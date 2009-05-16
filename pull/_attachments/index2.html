@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>Pull</title>
+		<link type="text/css" href="css/smoothness/jquery-ui-1.7.1.custom.css" rel="stylesheet" />	
+		<link type="text/css" href="css/thickbox.css" rel="stylesheet" />	
+		<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+		<script type="text/javascript" src="js/jquery-ui-1.7.1.custom.min.js"></script>
+		<script type="text/javascript" src="js/thickbox.js"></script>
+		<script type="text/javascript" src="js/jquery.query.js"></script>
+		<style type="text/css">
+				.draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+				.droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+				.foo { color: green;}
+		</style>
+		<script type="text/javascript">
+			$(function() {
+				$.getJSON("http://localhost:5984//pull/_design/pull/_view/example?limit=11",
+					function(data){
+						alert("data");
+						//
+						// create a new draggable div for each row
+						// with title & original_url
+						// mark new draggables divs with the CSS class ready-to-be-draggable
+						// mark new thickbox links with the CSS class ready-to-be-thickbox
+						//
+						$.each(data.rows, function(i, row){
+							$("#stage").append(
+								"<div class='ready-to-be-draggable draggable ui-widget-content'>" +
+								"<p>" + row.value.title + "</p>" +
+								"<a href='" + row.value.original_url + "TB_iframe=true&height=250&width=400" + "' class='ready-to-be-thickbox thickbox'>" + "(original)</a>" +
+								"</div>");
+						});
+
+						// initialize thickbox on the ready-to-be-thickbox
+						tb_init('a.ready-to-be-thickbox');//pass where to apply thickbox
+						// because these are now initialized, remove class ready-to-be-thickbox
+						$(".ready-to-be-thickbox").removeClass("ready-to-be-thickbox");
+
+						// initialize draggable on the ready-to-be-draggable
+						$(".ready-to-be-draggable").draggable();
+						// because these are now initialized, remove class ready-to-be-draggable
+						$(".ready-to-be-draggable").removeClass("ready-to-be-draggable");
+					}
+				);
+				$(".draggable").draggable();
+				$(".droppable").droppable({
+					drop: function(event, ui) {
+						$(this).addClass('ui-state-highlight').find('p').html('Dropped!');
+						$(ui.draggable).addClass('foo');
+					},
+					out: function(event, ui) {
+						$(this).addClass('ui-state-highlight').find('p').html('empty');
+						$(ui.draggable).removeClass('foo');
+					}
+
+				});
+
+			});
+		</script>
+	</head>
+	<body>
+		<div id="stage" class="demo">
+			<div id="droppable" class="droppable ui-widget-header">
+				<p>Drop here</p>
+			</div>
+			<div id="droppable" class="droppable ui-widget-header">
+				<p>Drop here</p>
+			</div>
+			<div id="droppable" class="droppable ui-widget-header">
+				<p>Drop here</p>
+			</div>
+			<div id="droppable" class="droppable ui-widget-header">
+				<p>Drop here</p>
+			</div>
+		</div>
+	</body>
+</html>
+
+

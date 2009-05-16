@@ -1,0 +1,339 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <!-- Meta http equivalent was here                                -->
+        <title>Dynamic</title>
+        <link rel="stylesheet" href="test.css" type="text/css">
+        <!--[if IE 6]>
+        <style>
+            .menu {
+                position: absolute;
+            }
+        </style>
+        <![endif]-->
+        <script src='jquery-1.3.1.min.js?3'></script>
+        <script src='jquery.easing.js?1'></script>
+        <script src='jquery.mousewheel.js?1'></script>
+        <script src='jquery.dynamic3.js?4'></script>
+        <script src='test.js?4'></script>
+        <script src='menu.js?4'></script>
+
+        <link type="text/css" rel="stylesheet" href="syntax/Styles/SyntaxHighlighter.css"></link>
+        <script language="javascript" src="syntax/Scripts/shCore.js"></script>
+        <script language="javascript" src="syntax/Scripts/shBrushJScript.js"></script>
+    </head>
+<body>
+
+<div class=menu>
+    <ul class=tabs>
+        <li tab="draggable">Draggable</li>
+        <li tab="resizable">Resizable</li>
+        <li tab="droppable">Droppable</li>
+    </ul>
+    <div id="draggable" class=options></div>
+    <div id="droppable" class=options></div>
+    <div id="resizable" class=options></div>
+</div>
+
+<div class=loading>
+    <span>l</span>
+    <span>o</span>
+    <span>a</span>
+    <span>d</span>
+    <span>i</span>
+    <span>n</span>
+    <span>g</span>
+</div>
+
+<div id=customhelper>custom element</div>
+<div id=customplaceholder>custom placeholder</div>
+
+<div class=content>
+    <h1>jquery.dynamic - draggable, droppable and resizable. Demo.</h1>
+    <p>
+        Use the left menu to learn about the most often used options. The <b>full</b> list of options you can find <a href="dynamic.xml">here.</a><br>
+        <a href="http://code.google.com/p/jquery-dynamic/downloads/list">Here</a> you can download the code.
+    </p>
+
+    <ul class=tabs>
+        <li tab="simple">Basic</li>
+        <li tab="nested">Containment and droppables</li>
+        <li tab="scroll">Scrolling</li>
+        <li tab="tables">Tables</li>
+        <li tab="static">Static</li>
+        <li tab="callbacks">Callbacks</li>
+        <li tab="misc">Misc</li>
+    </ul>
+
+    <div id=simple class=examples>
+        <div class="drag relative" style="left: 150px; top:20px;">drag me, resize me (relative)</div>
+        <div class="drag static">drag me, resize me (static)</div>
+        <div class="drag absolute" style="left:653px; top:229px;">drag me, resize me (absolute)</div>
+        <div class="drag fixed" style="left:850px; top:400px;">drag me, resize me (fixed)</div>
+    </div>
+
+
+    <div id=nested class="examples clearfix">
+
+        <div class=column>
+            <div class="container static">
+                static container, droppable
+                <div class="drag half static">static</div>
+            </div>
+        </div>
+        <div class=column>
+            <div class="container relative">
+                relative container, droppable
+                <div class="drag half relative">relative</div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="container absolute">
+                absolute container, droppable
+                <div class="container static" style="height:150px;">
+                    static container
+                </div>
+                <div class="drag half absolute">absolute</div>
+
+            </div>
+        </div>
+        <div class="column">
+            <div class="container fixed contrast">
+                fixed container, droppable (if you're using safari or chrome, you won't see fixed draggable here
+                due to some bugs in webkit engine with fixed elements inside of floats).
+                <div class="drag half fixed">fixed</div>
+            </div>
+        </div>
+        <br><br>
+
+    </div>
+
+    <div id=scroll class="examples clearfix">
+
+        <div class=column>
+            <div class="container static">
+                <p>static container, droppable</p>
+                <div class="drag half static">static</div>
+                <br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br>
+            </div>
+        </div>
+        <div class=column>
+            <div class="container relative">
+                <p>relative container, droppable</p>
+                <div class="drag half relative">relative</div>
+                <br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br>
+            </div>
+        </div>
+        <div class="column">
+            <div class="container absolute">
+                <p>absolute container, droppable</p>
+                <div class="drag half absolute">absolute</div>
+                <br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br>
+            </div>
+        </div>
+        <div class="column">
+            <div class="container fixed contrast">
+                <p>fixed container, droppable</p>
+                <div class="drag half fixed">fixed</div>
+                <br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br>
+            </div>
+        </div>
+        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
+
+
+    </div>
+
+    <div id=tables class=examples>
+
+        <br>
+        <table class=resizetable>
+            <tr>
+                <td>This is a poor example of how</td>
+                <td>.resizable could be used with tables.</td>
+                <td></td></tr>
+            <tr>
+                <td></td>
+                <td>Though it requires a special plugin,</td>
+                <td>i wanted to show you that it can work</td></tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>even with a few lines of code.</td></tr>
+        </table>
+
+    </div>
+    <div id=static class=examples>
+
+        <img src="gadget.jpg" class="drag" style="padding:0; width:300px; height:200px;">
+        <textarea style="width:300px; height:200px;"></textarea>
+
+    </div>
+    <div id=callbacks class=examples>
+
+        <div class="drag absolute"></div>
+        <div class="drag absolute"></div>
+        <div id="log" class="absolute" style=" width:250px; height:300px; overflow: auto; left: 700px; top: 160px;"></div>
+        <div style="position:fixed; width:100px; height:30px; left: 701px; top: 463px;">
+                <input type=button value="Clear" onclick="clearLog();"/>
+        </div>
+    </div>
+    <div id=misc class=examples>
+
+        <div class="column" style="margin-right:10px; height:200px;">
+        <div class="absolute" style="padding:10px; width:100px; height:100px; margin-top:10px;text-align:center;">
+            <img src="handle.gif" style="width:10px; height:10px;" class="draghandle"/>
+            <br/>Custom drag and resize handles<br/>
+            <img src="handle.gif" style="width:10px; height:10px;" class="resizehandle"/>
+        </div>
+        </div>
+
+        <div class="column" style="margin-right:10px; height:200px;">
+            Sortable list 1:<br>
+        <ul class="sortlist">
+            <li>list item 1</li>
+            <li>list item 2</li>
+            <li>list item 3</li>
+            <li>list item 4</li>
+            <li>list item 5</li>
+        </ul>
+        </div>
+
+        <div class="column" style="margin-right:10px; height:200px;">
+            Sortable list 2:<br>
+        <ul class="sortlist">
+            <li>list item 1</li>
+            <li>list item 2</li>
+            <li>list item 3</li>
+            <li>list item 4</li>
+            <li>list item 5</li>
+        </ul>
+        </div>
+
+        <div class="column" style="margin-right:10px; width:600px; clear: left;">
+            These above are simple sortable lists which, again (as table example), require a special plugin,
+            but still you can make it work with a few lines of code. Here is the code of the second list:
+            <div class=code><pre name=code class=js>
+$('.sortlist').find('li').draggable({
+    container: 'parent',
+    placeholder: true,
+    target: $('.sortlist').find('li'),
+    cls: {placeholder: 'liholder'},
+    targetOptions: {
+        tolerance: 'pointer',
+        over: function(e) {
+            if (e.placeholder.next().get(0) == e.self[0]) return true;
+            e.placeholder.insertBefore(e.self);
+        },
+        drop: function(e) {
+            if (e.draggable.next().get(0) == e.self[0]) return true;
+            e.draggable.insertBefore(e.self);
+        }
+    }
+});
+            </pre></div>
+            <br><br>
+        </div>
+
+    </div>
+</div>
+
+<script>
+$(function() {
+dp.SyntaxHighlighter.HighlightAll('code');
+
+$('.menu').find('.tabs > li').each(function(){
+    var li = $(this);
+    var tab = li.attr('tab');
+    li.bind('click', function() {
+        $('div.options').hide();
+        $('#'+tab).show();
+        $('.tabs li', $('.menu')).removeClass('selected');
+        li.addClass('selected');
+    });
+}).eq(0).click();
+
+
+$('.tabs > li', $('.content')).each(function(){
+    var li = $(this);
+    var tab = li.attr('tab');
+
+    li.bind('click', function() {
+        $('div.examples').hide();
+        $('#'+tab).show().find('.drag').resizable(true);
+
+        if (tab=='tables') {
+            $('#'+tab).find('td').resizable(true);
+            $('.resizetable').resizable(true);
+        }
+        if (tab=='static') {
+            $('#'+tab).find('textarea').resizable(true);
+        }
+        if (tab == 'misc') {
+            $('#'+tab).find('.absolute').resizable(true);
+        }
+
+        window.demoMenu.toggleOption('draggable', 'containment', (tab=='nested'));
+        window.demoMenu.toggleOption('resizable', 'containment', (tab=='nested'));
+
+        window.demoMenu.toggleOption('draggable', 'scroll', (tab=='scroll'));
+        window.demoMenu.toggleOption('resizable', 'scroll', (tab=='scroll'));
+
+
+        $('.tabs li', $('.content')).removeClass('selected');
+        li.addClass('selected');
+    });
+}).eq(0).click();
+
+
+$('.menu').resizable({
+    handles: 'e',
+    outside: 5,
+    size: 5,
+    helper: true,
+    cls: {e: 'menuresize', helper: 'menu-resize-helper', handleHelper: 'handleHelper'},
+    axis: 'x',
+    scope: 'dnmc',
+    end: function()  {
+        $('.content').css('padding-left', this.dynamic.size.width+20+'px');
+    }
+});
+
+});
+
+</script>
+</body>
+</html>

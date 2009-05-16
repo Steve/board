@@ -1,0 +1,8 @@
+development workflow
+	"couchapp push <couchdb-url>/<app-db-name>"
+		1. pushes <app>/_attachments/* from local filesystem to <couchddb-url>/<app-db-name>/_design/<app>/*
+			e.g. pushed pull/_attachments/index.html from local filesystem to http://localhost:5984/pulldb/_design/_pull/index.html
+
+		2. foreach .js file in lists/*.js
+			the function in the .js file is called with 
+			index.js -> <db-url>/<app>
