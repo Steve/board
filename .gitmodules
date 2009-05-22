@@ -1,0 +1,3 @@
+[submodule "vendor/jquery-ui"]
+	path = vendor/jquery-ui
+	url = git@github.com:steve/jquery-ui.git
