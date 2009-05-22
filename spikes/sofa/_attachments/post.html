@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sofa</title>
+    <link rel="stylesheet" href="screen.css" type="text/css">
+  </head>
+  <body>
+    <div id="header">
+      <a id="edit" href="edit.html">%</a>
+      <h2><a href="index.html">Sofa</a></h2>
+    </div>
+    <div id="content">
+      <h1></h1>
+      <div id="post"></div>
+    </div>    
+  </body>
+  <script src="/_utils/script/json2.js"></script>
+  <script src="/_utils/script/jquery.js?1.2.6"></script>
+  <script src="/_utils/script/jquery.couch.js?0.8.0"></script>
+  <script src="jquery.couchapp.js"></script>
+  <script src="blog.js"></script>
+  <script type="text/javascript" charset="utf-8">
+  $.CouchApp(function(app) {
+      var B = new Blog(app);
+      var docid = document.location.hash.replace('#','');
+      
+      $('a#edit')[0].href = "edit.html#"+docid;
+      
+      app.db.openDoc(docid, {success: function(doc) {
+        $('h1').text(doc.title);
+        $('#post').html(B.postToHTML(doc));
+        $('#post').fadeIn(800);
+      }});
+
+    });
+  </script>
+  <script src="showdown.js"></script>
+</html>
