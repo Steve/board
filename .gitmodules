@@ -1,3 +1,6 @@
 [submodule "vendor/jquery-ui"]
 	path = vendor/jquery-ui
 	url = git@github.com:steve/jquery-ui.git
+[submodule "pull/vendor/cushion"]
+	path = pull/vendor/cushion
+	url = git@github.com:steve/cushion.git
