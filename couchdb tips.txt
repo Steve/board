@@ -1,4 +1,7 @@
 development workflow
+
+couchapp push http://<name>:<password>@127.0.0.1:5984/pull 
+
 	"couchapp push <couchdb-url>/<app-db-name>"
 		1. pushes <app>/_attachments/* from local filesystem to <couchddb-url>/<app-db-name>/_design/<app>/*
 			e.g. pushed pull/_attachments/index.html from local filesystem to http://localhost:5984/pulldb/_design/_pull/index.html

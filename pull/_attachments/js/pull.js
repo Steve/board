@@ -3,12 +3,47 @@ var Pull = {
 		$.CouchApp(function(app) {
 			Cushion.onTopOf(app, "stream",
 				{
-					descending: true, 
-					limit:11, 
 					group: true
 				}, {
 					"Stop": Stop,
 					"Work": Work
+				},
+				function () {
+				        $(".connectedSortable").sortable({
+				            connectWith: '.connectedSortable',
+							dropOnEmpty: true
+				        }).disableSelection();
+
+						$("#stream").sortable().disableSelection();
+
+						// now go over and initialize any newly created thickbox
+
+						// initialize thickbox on the ready-to-be-thickbox
+						tb_init('a.ready-to-be-thickbox');//pass where to apply thickbox
+						// because these are now initialized, remove class ready-to-be-thickbox
+						$(".ready-to-be-thickbox").removeClass("ready-to-be-thickbox");
+
+						// now go over and initialize any newly created draggables or droppables
+
+						// initialize draggable on the ready-to-be-draggable
+						$(".ready-to-be-draggable").draggable({containment: '.droppable'});
+						$(".ready-to-be-draggable").draggable();
+						// because these are now initialized, remove class ready-to-be-draggable
+						$(".ready-to-be-draggable").removeClass("ready-to-be-draggable");
+
+						// initialize droppable on the ready-to-be-droppable
+						$(".ready-to-be-droppable").droppable({
+							drop : function(event, ui) {
+								var work = ui.draggable.data("work");
+								var foo = $(this);
+								var p = $(this).position();
+								var top = ui.position.top;
+								var left = ui.position.left;
+								work.stop($(this).data("stop"), top, left);
+							}
+						});
+						// because these are now initialized, remove class ready-to-be-droppable
+						$(".ready-to-be-droppable").removeClass("ready-to-be-droppable");
 				}
 			);
 

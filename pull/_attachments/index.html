@@ -1,29 +1,43 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Generated CouchApp</title>
-    <link rel="stylesheet" href="style/main.css" type="text/css">
-    <link rel="stylesheet" href="style/thickbox.css" type="text/css" media="screen" />
-  </head>
-  <body>
-    <h1>Generated CouchApp</h1>
-	<a href="http://google.com/TB_iframe=true&height=250&width=400" title="add a caption to title attribute / or leave blank" class="thickbox">Example 1</a>  
-    <ul id="view"></ul>
-  </body>
-  <script src="/_utils/script/json2.js"></script>
-  <script src="/_utils/script/jquery.js?1.2.6"></script>
-  <script src="/_utils/script/jquery.couch.js?0.8.0"></script>
-  <script type="text/javascript" src="thickbox.js"></script>
-  <script type="text/javascript" charset="utf-8">
-    $(function() {
-      var dbname = document.location.href.split('/')[3];
-      var design = unescape(document.location.href).split('/')[5];
-      var DB = $.couch.db(dbname);
-      DB.view(design+"/example", { reduce: false, success: function(json) {
-        $("#view").html(json.rows.map(function(row) {
-          return '<li>'+row.key+'</li>';
-        }).join(''));
-      }});
-    });
-  </script>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>Board</title>
+		<link type="text/css" href="css/smoothness/jquery-ui-1.7.1.custom.css" rel="stylesheet" />	
+		<link type="text/css" href="css/thickbox.css" rel="stylesheet" />	
+
+		<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+		<script type="text/javascript" src="js/jquery-ui-1.7.1.custom.min.js"></script>
+		<script src="/_utils/script/json2.js"></script>
+		<script src="/_utils/script/jquery.couch.js"></script>
+		<script src="jquery.couchapp.js"></script>
+
+		<script type="text/javascript" src="js/thickbox.js"></script>
+		<script type="text/javascript" src="js/jquery.query.js"></script>
+		<script type="text/javascript" src="js/board.js"></script>
+		<script type="text/javascript" src="vendor/cushion/cushion.couch.js"></script>
+		<style type="text/css">
+			body {
+				    font-size: 62.5%;
+			}
+
+			body {
+				    font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+			}
+			.sortable { list-style-type: none; margin: 0; padding: 5px; width: 120px; float: left; margin-right: 10px; }
+		    .sortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; width: 120px; text-align: center}
+			.lane {width: 140px; height: 250px; float: left}
+			.station-header {height: 20px; text-align: center}
+			.station-footer {height: 20px; text-align: center}
+			.empty {background: yellow;}
+		</style>
+
+		<script type="text/javascript" charset="utf-8">
+			Board.start();
+		</script>
+	</head>
+	<body>
+		<div id="stations">
+		</div>
+	</body>
 </html>
